@@ -89,17 +89,18 @@ int main( void )
 
       I = FunctionsList[FId].FuncAD(b) - FunctionsList[FId].FuncAD(a);
       acm_vals = Accumulate(FunctionsList[FId].Func, n, a, b);
-      std::cout << "Int(" << FunctionsList[FId].Expr << ", " << a << ", " << b << ") = " << I << '\n';
+      std::cout << "Int(" << std::setprecision(15) << FunctionsList[FId].Expr << ", " << a << ", " << b << ") = " << I << '\n';
       output << fort::header << "Method" << "I(h)" << "|I - I(h)|" << "|I - I(h)| / |I|" << fort::endr;
       for (size_t i = 0; i < NumOfQR; i++)
       {
         I_QR = QRList[i].Rule(acm_vals);
-        output << QRList[i].Name << I_QR << fabs(I - I_QR) << fabs(I - I_QR) / fabs(I) << fort::endr;
+        output << QRList[i].Name << std::setprecision(15) << I_QR << fabs(I - I_QR) << fabs(I - I_QR) / fabs(I) << fort::endr;
       }
       if (key == '1')
       {
+        acm_vals = Accumulate(FunctionsList[FId].Func, 3, a, b);
         I_QR = QRThreeEighths(acm_vals);
-        output << "3/8" << I_QR << fabs(I - I_QR) << fabs(I - I_QR) / fabs(I) << fort::endr;
+        output << "3/8" << std::setprecision(15) << I_QR << fabs(I - I_QR) << fabs(I - I_QR) / fabs(I) << fort::endr;
       }
       std::cout << output.to_string();
     }

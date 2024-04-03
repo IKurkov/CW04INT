@@ -54,5 +54,5 @@ double QRSimpson( AcmFVals acm )
 
 double QRThreeEighths( AcmFVals acm )
 {
-  return acm.step * (acm.begin + acm.end + 3 * acm.even) / 8;
+  return 3 * acm.step * (acm.begin + acm.end + 3 * acm.even) / 8;
 }
